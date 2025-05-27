@@ -12,7 +12,8 @@ public class StructureResponseBuilder {
         return ResponseEntity.status(status).body(responseStructure);
     }
 
-    public <T> ResponseEntity<ResponseStructure<T>> error(HttpStatus httpStatus, String message, Object o) {
-        return null;
+    public <T> ResponseEntity<ResponseStructure<T>> error(HttpStatus status,String message,T data){
+        ResponseStructure<T> responseStructure=ResponseStructure.<T>builder().StatusCode(status.value()).Message(message).data(data).build();
+        return ResponseEntity.status(status).body(responseStructure);
     }
 }

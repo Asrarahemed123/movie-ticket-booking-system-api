@@ -1,21 +1,18 @@
 package com.example.mtb.dto;
 
 import com.example.mtb.enums.Role;
-import jakarta.validation.constraints.NotNull;
+//import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
 public record UserResponse(
 
-        @NotNull
+        String userId,
         String userName,
-        @NotNull
         String email,
-        String userDetailsEmail,
-        @NotNull
-        Role userRole,
-        @NotNull
+        Role role,
         String phoneNumber,
         LocalDate dateOfBirth
 ) {
+
 }

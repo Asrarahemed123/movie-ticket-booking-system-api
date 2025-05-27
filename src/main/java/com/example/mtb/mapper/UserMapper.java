@@ -1,6 +1,7 @@
 package com.example.mtb.mapper;
 
 import com.example.mtb.dto.UserRegistrationRequest;
+import com.example.mtb.dto.UserRequest;
 import com.example.mtb.dto.UserResponse;
 import com.example.mtb.entity.TheaterOwner;
 import com.example.mtb.entity.User;
@@ -48,5 +49,29 @@ public class UserMapper {
         theaterOwner.setCreatedAt(now);
         theaterOwner.setUpdatedAt(now);
         return theaterOwner;
+    }
+
+
+//    public UserDetails toUpdateUserdetails(UserRequest userRequest, UserDetails userDetails) {
+//        userDetails.setUserName(userRequest.userName());
+//        userDetails.setPhoneNumber(userRequest.phoneNumber());
+//        userDetails.setDateOfBirth(userRequest.dateOfBirth());
+//        userDetails.setUpdatedAt(now);
+//        return userDetails;
+//    }
+
+    public UserDetails toUpdateUserDetails(UserRequest request, UserDetails userDetails) {
+
+        userDetails.setUserName(request.userName());
+        userDetails.setPhoneNumber(request.phoneNumber());
+        userDetails.setDateOfBirth(request.dateOfBirth());
+        userDetails.setUpdatedAt(now);
+        return userDetails;
+    }
+
+    public UserDetails toDeleteUserDetails(UserDetails userDetails){
+        userDetails.setDeleteAt(now);
+        userDetails.setDelete(true);
+        return userDetails;
     }
 }

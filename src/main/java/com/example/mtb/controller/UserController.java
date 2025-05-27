@@ -12,10 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -29,5 +26,20 @@ public class UserController {
     public ResponseEntity<ResponseStructure<UserResponse>> registerUser(@Valid @RequestBody UserRegistrationRequest request){
         UserResponse userResponse =userService.userRegister(request);
         return StructureResponseBuilder.success(HttpStatus.CREATED,"user Registration successfully done",userResponse);
+    }
+
+    @PutMapping("/profile")
+    public ResponseEntity<ResponseStructure<UserResponse>> updateUser(
+            @Valid @RequestBody UserRequest userRequest,
+            @RequestParam String email) {
+
+        UserResponse userResponse = userService.updateUser(userRequest, email);
+        return structureResponseBuilder.success(HttpStatus.OK, "User updated successfully", userResponse);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<ResponseStructure<UserResponse>> deleteUser(@RequestParam String email){
+        UserResponse userResponse = userService.deleteUser(email);
+        return structureResponseBuilder.success(HttpStatus.OK, "User Deleted Successfully", userResponse);
     }
 }

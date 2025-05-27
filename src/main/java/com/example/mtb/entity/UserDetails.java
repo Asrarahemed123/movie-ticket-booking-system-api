@@ -31,6 +31,6 @@ public class UserDetails {
     private LocalDate dateOfBirth;
     private Long createdAt;
     private Long updatedAt;
-    private boolean isDelete=true;
-
+    private Long deleteAt;
+    private boolean isDelete=false;
 }
